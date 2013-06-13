@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+                <script src="scripts/tinymce/js/tinymce/tinymce.min.js"></script>
+       <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script> 
+            
+        <script type="text/javascript"></script>
+        
+    </head>
+    <body>
+        <script type="text/javascript">
+tinyMCE.init({
+        mode : "textareas",
+        theme : "modern"
+});
+
+function ajaxLoad() {
+        var ed = tinyMCE.get('content');
+        // Do you ajax call here, window.setTimeout fakes ajax call
+        ed.setProgressState(1); // Show progress
+        window.setTimeout(function() {
+                ed.setProgressState(0); // Hide progress
+                ed.setContent('HTML content that got passed from server.');
+        }, 3000); 
+}
+
+function ajaxSave() {
+        var ed = tinyMCE.get('content');
+        $('#output').append(ed.getContent());
+
+}
+
+        $('#save').click(function() {
+                ajaxSave();
+            
+        });
+        </script>
+
+        <textarea name="content" style="width:100%">
+        </textarea>
+    <button onclick="ajaxSave();">Save</button>
+    <button onclick="ajaxLoad();">Load</button>
+    <div id="output"></div>
+    </body>
+</html>
