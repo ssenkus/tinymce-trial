@@ -7,13 +7,44 @@
        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script> 
             
         <script type="text/javascript"></script>
-        
+        <style>
+            #output {
+                font-family: helvetica, arial, sans-serif;
+                width: 600px;
+                height: 200px;
+                border: 2px solid #000;
+                background-color: #FFCD39;
+                color: #B28B16;
+                float: left;
+                margin: 10px;
+                padding: 30px;
+            }
+            
+            #output h1 {
+                font-size: 36px;
+                color: #53FFD2;
+                text-shadow: 2px 2px 0px #000;
+            }
+            
+            #output p {
+                font-family: Georgia;
+                
+            }
+            textarea {
+                float:left;
+                width: 500px;
+                height: 200px;
+                
+            }
+            
+        </style> 
     </head>
     <body>
         <script type="text/javascript">
 tinyMCE.init({
         mode : "textareas",
-        theme : "modern"
+        theme : "modern",
+        width: 400
 });
 
 function ajaxLoad() {
@@ -28,7 +59,7 @@ function ajaxLoad() {
 
 function ajaxSave() {
         var ed = tinyMCE.get('content');
-        $('#output').append(ed.getContent());
+        $('#output').empty().append(ed.getContent());
         //$.ajax({});
 
 }
@@ -38,11 +69,12 @@ function ajaxSave() {
             
         });
         </script>
-
+        <div style="width: 500px; height: 400px; float: left; display: block; margin:10px;">
         <textarea name="content" style="width:100%">
         </textarea>
     <button onclick="ajaxSave();">Save</button>
     <button onclick="ajaxLoad();">Load</button>
+        </div>
     <div id="output"></div>
     </body>
 </html>
